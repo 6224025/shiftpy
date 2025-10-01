@@ -1,13 +1,13 @@
 from fastapi import APIRouter
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
 
 router = APIRouter()
 
-@router.get(os.getenv("api/getShifts"), tags=["Shifts"])
+@router.get("/api/getShifts", tags=["Shifts"])
 async def get_shifts():
-    with open("sampledata.json", "r") as f:
+    # プロジェクトルートからの相対パスを取得
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    json_path = os.path.join(base_dir, "sampledata.json")
+    with open(json_path, "r") as f:
         data = f.read()
     return {"shifts": data}

@@ -1,19 +1,18 @@
 from fastapi import FastAPI
-from app.routers.getShifts import router as shifts_router
-from app.routers.login import router as login_router
-from app.routers.updataShifts import router as updata_shifts_router
+from .config import settings 
+from .routers import login,  getShifts, updataShifts
 
 
 app = FastAPI(
-    title="シフト管理API",
+    title=settings.APP_TITLE,
     description="シフトの閲覧・更新を行うためのAPIです。",
     version="1.0.0",
 )
 
 
-app.include_router(login_router)
-app.include_router(shifts_router)
-app.include_router(updata_shifts_router)
+app.include_router(login.router)
+app.include_router(getShifts.router)
+app.include_router(updataShifts.router)
 
 
 @app.get("/", tags=["Root"])

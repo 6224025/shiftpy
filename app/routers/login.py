@@ -1,6 +1,7 @@
 from fastapi import APIRouter
+from ..config import settings
 
-# APIRouterのインスタンスを作成
+
 router = APIRouter()
 
 @router.post("/api/login", tags=["Authentication"])
