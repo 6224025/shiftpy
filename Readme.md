@@ -7,7 +7,7 @@
 ```bash
 source .venv/bin/activate
 uv pip install -r requirements.txt
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 http://localhost:8000/docs でAPIドキュメントを確認可能。
 

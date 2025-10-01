@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from getShifts import router as shifts_router
-from login import router as login_router
-from updataShifts import router as updata_shifts_router
+from app.routers.getShifts import router as shifts_router
+from app.routers.login import router as login_router
+from app.routers.updataShifts import router as updata_shifts_router
 
 
 app = FastAPI(
