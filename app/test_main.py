@@ -1,8 +1,8 @@
 import pytest
-from httpx import AsyncClient, ASGITransport
+from httpx import ASGITransport, AsyncClient
 
 # FastAPIのアプリケーションインスタンスをインポート
-from main import app 
+from app.main import app
 
 # pytestで非同期テストを実行するための設定
 @pytest.mark.asyncio
@@ -16,6 +16,25 @@ async def test_get_shifts():
     # AsyncClientには transport 引数として渡す
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         response = await ac.get("/api/getShifts")
-    
-    # ステータスコードが200であることを確認
+
     assert response.status_code == 200
+
+    data = response.json()
+    assert "shifts" in data
+    assert len(data["shifts"]) > 0
+
+
+@pytest.mark.asyncio
+async def test_get_shifts_filtered_by_student_id():
+    """studentIdクエリで対象のシフトのみ取得できるかテストする"""
+    transport = ASGITransport(app=app)
+
+    async with AsyncClient(transport=transport, base_url="http://test") as ac:
+        response = await ac.get("/api/getShifts", params={"studentId": "S001"})
+
+    assert response.status_code == 200
+
+    data = response.json()
+    assert data.get("shifts")
+    assert all(shift.get("StudentId") == "S001" for shift in data["shifts"])
+    assert len(data["shifts"]) == 1
