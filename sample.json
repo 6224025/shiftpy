@@ -1,0 +1,36 @@
+{
+    "shifts": [
+        {
+            "StudentId": "S001",
+            "endTime": "13:00",
+            "jobName": "Cashier",
+            "name": "Alice",
+            "shiftDate": "2024-07-01",
+            "startTime": "09:00"
+        },
+        {
+            "StudentId": "S002",
+            "endTime": "18:00",
+            "jobName": "Chef",
+            "name": "Bob",
+            "shiftDate": "2024-07-01",
+            "startTime": "10:00"
+        },
+        {
+            "StudentId": "S001",
+            "endTime": "17:00",
+            "jobName": "Cashier",
+            "name": "Alice",
+            "shiftDate": "2024-07-01",
+            "startTime": "14:00"
+        },
+        {
+            "StudentId": "S003",
+            "endTime": "16:00",
+            "jobName": "Manager",
+            "name": "Charlie",
+            "shiftDate": "2024-07-02",
+            "startTime": "08:00"
+        }
+    ]
+}
